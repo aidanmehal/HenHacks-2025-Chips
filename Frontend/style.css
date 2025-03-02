@@ -1,0 +1,575 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+* {
+    margin: 0; /* Makes sure there is no default margins to begin with*/
+    padding: 0; /* Makes sure there is no default padding to begin with*/
+    box-sizing: border-box; /* Makes sure the size and location of things includes it's padding and border not just content*/
+    text-decoration: none;  /* Give me plain everything. Links shouldn't have underlines */
+    list-style: none;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.932);
+    border-bottom: 2px solid black; /* Add this line */
+}
+
+/* Default nav ul is for desktop version */
+.computer_menu {
+    width: 100%; /* Flexbox must span entire width of screen*/
+    list-style: none;  /* Makes sure there's no bullet points or other list style */
+    display: flex; /* All children of this element belong to it's flex-box*/
+    justify-content: space-between; 
+    /* Putting align-items: center here won't do anything b/c no height was defined*/
+}
+
+nav{
+    position: relative;
+}
+#logo {
+    position: absolute; /* Makes sure the logo is absolute to the parent which is the whole nav so center of entire page */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: 45px;
+}
+
+nav li {
+    height: 110px;   /* We set the height of the li's and that sets the height of the parent to the height of the li*/
+}
+nav a{
+    height: 100%;
+    padding: 0 9px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center; /* Aligns elements vertically in respect to parent's height*/
+}
+
+nav a:hover {
+    color:rgb(223, 140, 32);
+}
+
+#account_logo {
+    padding-left: 15px;
+}
+#account_logo svg {
+    height: 80px; /* Ensure the SVG maintains its size */
+    width: 32px; /* Ensure the SVG maintains its size */
+}
+#account_logo path:hover {
+    fill:rgb(223, 140, 32);
+}
+
+#last a {
+    padding-right: 40px;
+}
+
+/*The burger is not shown by default (desktop) but gets turned on by phone media query*/
+#burger {
+    display:none
+}
+
+.hideOnMobile {
+    font-size: 20px;
+}
+
+
+/* Styling the mobile nav menu*/
+
+.phone_menu {
+    position: fixed; /* We strictly determine it's position */
+    top: 0;
+    right: 0; /* These two combined move it to the top left of the screen */
+    height: 100vh; /* Height is the whole view of the screen */
+    width: 70%; /* I want the sidebar to cover 70% of the screen when opened*/
+    z-index: 99; /* Make sure the phone_menu is above verything else*/
+    background-color: white;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.4); /* This is just fancy stuff that adds a subtle depth shadow to the border of the sidebar */
+
+    display: none; /* I put it as none initally so it hides but when you click on it, JS changes this to flex. When it opens and you hit the X it changes it back to none*/
+    flex-direction: column; /* Vertical flexbox not horizontal. Stuff aligned on top of each other with respect to each other */
+    align-items: end; /* Horizontally stick flex-box to the very left*/
+    justify-content: start; /* Vertically stick flex-box to the top*/ 
+    padding-left: 15px;
+}
+.phone_menu li {
+    width: 100%;
+}
+
+.phone_menu a {
+    width: 100%;
+    font-size: 25px;
+    color: black;   /* Since background white we need elements to be black so visible*/
+}
+.phone_menu a:hover {
+    color: black;
+    background-color: rgb(232, 232, 232);
+}
+#X a:hover {
+    background-color: white; /*May change mind but i don't wan the gray for the x*/
+    cursor: pointer;
+}
+
+/* Less than 750 is mobile view */
+@media (max-width: 750px) {
+    /* Hide elements that are not needed on mobile */
+    .hideOnMobile {
+        display: none;
+    }
+    /* Center logo */
+    #logo {
+        flex-grow: 1; /* Allow the logo to take up available space */
+    }
+
+    /* Align hamburger on the left */
+    #burger {
+        display: flex; /* Ensure the burger is shown */
+        padding-right: 15px;
+    }
+}
+
+/*This is the desktop version*/
+@media (min-width: 750px) {
+    #account_logo {
+        margin-right: auto; /* Pushes the account logo to the right */
+    }
+
+    .left, .right {
+        display: flex; /* Ensure elements inside them are flex items */
+        align-items: center;
+    }
+
+    .center {
+        flex-grow: 1; /* Makes sure center div takes up extra space so other stuff gets pushed all the way to the ends*/ 
+        display: flex;
+        justify-content: center; /* Ensures the logo's space is centered. Logo not in flexbox */
+    }
+}
+
+
+/*////////////////////////////////// Body /////////////////////////////////////*/
+
+
+
+/* Ensure the image fits within the screen size */
+.scroll_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    z-index: 1;
+    width: 60vh; /* Adjust width to match the scroll image */
+    height: 400px; /* Adjust height to match the scroll image */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img.scroll {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+@media (min-width: 750px) {
+    .scroll_container {
+        width: 80vh; /* Adjust width to match the scroll image */
+        height: auto; /* Adjust height to match the scroll image */
+    }
+}
+@media (max-width: 750px) {
+    .scroll_container {
+        width: 60vh; /* Adjust width to match the scroll image */
+        height: 50vh; /* Adjust height to match the scroll image */
+    }
+}
+
+/*////////////////////////////////// Form /////////////////////////////////////*/
+
+#file-upload-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+#drop-area {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 2px dashed #b87a15;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#drop-area.highlight {
+    border-color: #0066ff;
+    background-color: #f0f8ff;
+}
+
+#file-input {
+    display: none;
+}
+
+#file-label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#status-message {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
+
+#file-upload-form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+#upload_button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(223, 140, 32);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#upload_button:hover {
+    background-color: rgb(232, 152, 48);
+    transform: scale(1.05);
+}
+
+
+/*////////////////////////////////// Footer Socials /////////////////////////////////////*/
+
+footer {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    flex-direction: column;
+}
+
+#socials_title {
+    padding: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo_container ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+
+/*////////////////////////////////// Footer Text Portion /////////////////////////////////////*/
+
+.text_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin-bottom: 25px;
+}
+.text_container a {
+    color: black;
+}
+.text_container a:hover {
+    color: rgb(65, 65, 65);
+}
+
+.text_portion {
+    grid-area: 1 / 1 / 3 / 3;
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: start;
+    margin-left: 20%;
+}
+.text_portion ul li {
+    margin: 10px;
+}
+
+
+.footer_account {
+    /* background-color: pink; */
+    grid-column: span 2;
+    grid-row: span 1;
+    margin-left: 30px;
+}
+.footer_account div a {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.footer_download {
+    /* background-color: aquamarine; */
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin-left: 30px;
+    margin-right: 20%;
+}
+.footer_download h4 {
+    padding: 10px;
+    color: black;
+}
+.footer_download ul li {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;;
+}
+.appstore {
+    height: 20px;
+}
+
+@media (min-width: 800px) {
+    .footer_account {
+        display: flex;
+        justify-content: center;
+    }
+    .footer_download {
+        /* background-color: aquamarine; */
+        justify-self: end;
+    }
+}
+@media (max-width: 399px) {
+    .text_portion {
+        margin-left: 30px;
+    }
+}
+
+
+/*////////////////////////////////// App In Future Page CSS  /////////////////////////////////////*/
+.appInFuture {
+    padding: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/*/////////////////////////   Landing Page: Top Image   ///////////////////////////////////////////////*/
+
+.top_image_container {
+    position: relative; /* To control the layout */
+    width: 100%; /* Default: Full width */
+    height: auto; /* Adjust height to maintain aspect ratio */
+}
+
+.top_image_container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+.top_image_container button {
+    position: absolute; /* Position relative to the container */
+    bottom: 10%; /* Distance from the bottom of the image */
+    left: 49%; /* Horizontally center the button */
+    transform: translateX(-50%); /* Adjust centering */
+    padding: 10px 20px; 
+    background-color: #0000; 
+    color: #fff; 
+    border: none; /* Remove button's border */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    text-decoration: underline;
+}
+
+.top_image_container button:hover {
+    background-color: #ffffff;
+    color: black;
+    text-decoration: none;
+}
+
+
+@media (max-width: 940px) {
+    .top_image_container {
+        width: 100vw; /* Full viewport width */
+        height: 85vh; /* Cover 80% of the screen height */
+    }
+    .top_image_container img {
+        display: block;
+        object-fit: cover; /* Ensures the image covers the container proportionally */
+        width: 100%; /* Image fills the container */
+        height: 100%; /* Stretches while maintaining aspect ratio */
+    }
+}
+@media (max-width: 660px) {
+    .top_image_container {
+        height: 70vh; /* Cover 80% of the screen height */
+    }
+}
+@media (max-width: 590px) {
+    .top_image_container {
+        height: 60vh; /* Cover 80% of the screen height */
+    }
+}
+
+
+
+/*///////////////////////// Login Page and Create Account Page////////////////////////////////////////////////////////*/
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 7%;
+    background-color: rgb(241, 241, 241);
+    padding: 20px; /*padding inside the box */
+}
+.login h1 {
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    padding: 10px;
+    gap:10px;
+}
+
+.login form .input {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.login form input {
+    box-sizing: border-box;
+    flex-grow: 1;
+    height: 30px;
+    min-width: 0px;
+    padding: 1em;
+}
+
+.login form label {
+    padding: 3px;
+    margin-right: 3px;
+}
+
+.form_label_icon path {
+    fill: rgb(0, 0, 0);
+}
+
+
+
+.login button {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px; /* for rounded corners */
+}
+.login button:hover {
+    background-color: #303030;
+}
+
+.login p {
+    margin-top: 10px;
+    padding-bottom: 50px;
+}
+
+.login a {
+    color: #484848;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+
+.login h3{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+
+/*////////////////////////////////// Account Creation Confirmation /////////////////////////////////////*/
+
+
+.registrationConfirmation {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(241, 241, 241);
+    padding: 20px;
+    margin: 7%;
+
+}
+.registrationConfirmation h1 {
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.registrationConfirmation h2 {
+    text-align: center;
+}
+.registrationConfirmation p {
+    margin-top: 10px;
+    padding-bottom: 50px;
+}
+
+.registrationConfirmation a {
+    color: #484848;
+    text-decoration: underline;
+}
+
+.registrationConfirmation a:hover {
+    text-decoration: none;
+}
+
+.registrationConfirmation h3{
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.registrationConfirmation ul {
+    padding-bottom: 100px;
+}
+.registrationConfirmation ul li {
+    padding: 10px;
+}
