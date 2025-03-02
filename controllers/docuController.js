@@ -12,6 +12,8 @@ const uploadDocument = (req, res) => {
         return res.status(400).json({ error: "No file uploaded" });
     }
 
+    console.log(`✅ File uploaded: ${req.file.filename}`);
+
     res.json({
         message: "File uploaded successfully",
         filePath: req.file.path

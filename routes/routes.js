@@ -41,7 +41,7 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB max file size
 });
 
-// Fix: Ensure frontend receives expected JSON response for uploads
+// Ensure frontend receives JSON response after file upload
 router.post("/upload", (req, res, next) => {
     upload.single("file")(req, res, (err) => {
         if (err) {
@@ -60,7 +60,7 @@ router.post("/upload", (req, res, next) => {
     });
 });
 
-// Fix: Ensure frontend can analyze documents properly
+// Ensure frontend can analyze documents properly
 router.post("/analyze", upload.single("file"), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file provided for analysis" });
@@ -74,10 +74,11 @@ router.post("/analyze", upload.single("file"), async (req, res) => {
     }
 });
 
-// POST /api/users/register
+// User registration endpoint
 router.post("/register", registerUser);
 
 export default router;
+
 
 
 
