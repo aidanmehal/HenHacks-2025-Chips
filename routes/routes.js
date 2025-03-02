@@ -31,7 +31,7 @@ const fileFilter = (req, file, cb) => {
     if (allowedTypes.includes(file.mimetype)) {
         cb(null, true);
     } else {
-        cb(new Error("Invalid file type. Only PDF and Word documents are allowed."), false);
+        cb(new Error("❌ Invalid file type. Only PDF and Word documents are allowed."), false);
     }
 };
 
@@ -41,17 +41,32 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB max file size
 });
 
-// Endpoint to handle file upload and analysis
-router.post("/analyze", upload.single("file"), (req, res) => {
+// Ensure frontend receives JSON response after file upload
+router.post("/upload", upload.single("file"), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Respond with a message confirming receipt of the file
-    res.json({
-        message: "File uploaded successfully",
-        filePath: `/uploads/${req.file.filename}`
-    });
+    try {
+        const uploadResult = await uploadDocument(req, res);
+        res.json(uploadResult);
+    } catch (error) {
+        res.status(500).json({ error: "Upload failed", details: error.message });
+    }
+});
+
+// Ensure frontend can analyze documents properly
+router.post("/analyze", upload.single("file"), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No file provided for analysis" });
+    }
+
+    try {
+        const analysisResult = await analyzeDocument(req, res);
+        res.json(analysisResult);
+    } catch (error) {
+        res.status(500).json({ error: "Analysis failed", details: error.message });
+    }
 });
 
 // User registration endpoint

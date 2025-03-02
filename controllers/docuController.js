@@ -133,7 +133,5 @@ For each classification:
     }
 };
 
-// ✅ Correctly export both functions ONCE
 export { uploadDocument, analyzeDocument };
-
 
