@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const dropArea = document.getElementById("drop-area");
     const fileInput = document.getElementById("file-input");
