@@ -6,18 +6,20 @@ import { generateContent } from "../services/geminiService.js";
 
 /**
  * Upload a legal document for processing
- * @route POST /api/documents/upload
  */
 const uploadDocument = (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
     }
-    res.json({ message: "File uploaded successfully", filePath: req.file.path });
+
+    res.json({
+        message: "File uploaded successfully",
+        filePath: req.file.path
+    });
 };
 
 /**
- * Delete a file after processing to prevent storage bloat
- * @param {string} filePath - Path of the file to delete
+ * Delete a file after processing
  */
 const deleteFile = (filePath) => {
     fs.unlink(filePath, (err) => {
@@ -26,16 +28,12 @@ const deleteFile = (filePath) => {
 };
 
 /**
- * Safe JSON parsing to prevent crashes if AI returns text instead of JSON
+ * Parse AI response safely
  */
 const safeParseJSON = (response) => {
     try {
-        // Convert response to string (in case it's wrapped in an object)
         let text = typeof response === "object" && response.parts ? response.parts[0]?.text : response;
-
-        // Remove Markdown formatting if present (e.g., ```json ... ```)
         text = text.replace(/^```json\s*|```$/g, "").trim();
-
         return JSON.parse(text);
     } catch (error) {
         console.error("⚠️ Failed to parse JSON:", error, "Response:", response);
@@ -44,8 +42,7 @@ const safeParseJSON = (response) => {
 };
 
 /**
- * Analyze a legal document using Gemini AI
- * @route POST /api/documents/analyze
+ * Analyze a document using Gemini AI
  */
 const analyzeDocument = async (req, res) => {
     try {
@@ -91,9 +88,7 @@ For each classification:
   "basic": { "Title 1": "Full content of basic section", ... },
   "important": { "Title 2": "Full content of important section", ... },
   "fill": { "Field requirement sentence": "Title of relevant section" }
-}
-
-🚨 IMPORTANT: DO NOT include any explanations, notes, or text before or after the JSON output. Only return pure JSON.`;
+}`;
 
         const ratingPrompt = `Rate the legal document based on how typical and safe it is. Provide a score from **1 to 10** where:
 - **10** = Standard, safe document
@@ -103,9 +98,7 @@ For each classification:
 {
   "rating": X, // Integer from 1-10
   "reason": "Brief explanation of the rating"
-}
-
-🚨 IMPORTANT: DO NOT include any explanations, notes, or text before or after the JSON output. Only return pure JSON.`;
+}`;
 
         const response = await generateContent(prompt);
         const ratingResponse = await generateContent(ratingPrompt);
@@ -113,7 +106,7 @@ For each classification:
         console.log("📥 AI Raw Response:", response);
         console.log("📥 AI Raw Rating Response:", ratingResponse);
 
-        // Extract and parse AI responses properly
+        // Parse AI response properly
         const parsedResponse = safeParseJSON(response);
         const parsedRatingResponse = safeParseJSON(ratingResponse);
 
@@ -127,12 +120,18 @@ For each classification:
             });
         }
 
-        res.json({ analysis: parsedResponse, rating: parsedRatingResponse });
+        res.json({
+            message: "Analysis complete",
+            analysis: parsedResponse,
+            rating: parsedRatingResponse
+        });
     } catch (error) {
         console.error("❌ Error analyzing document:", error);
         res.status(500).json({ error: "Internal Server Error." });
     }
 };
 
-// ✅ Correctly export both functions
+// ✅ Correctly export both functions ONCE
 export { uploadDocument, analyzeDocument };
+
+

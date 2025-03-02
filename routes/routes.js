@@ -40,7 +40,7 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB max file size
 });
 
-// Upload route with improved error handling
+// Fix: Ensure frontend receives expected JSON response for uploads
 router.post("/upload", (req, res, next) => {
     upload.single("file")(req, res, (err) => {
         if (err) {
@@ -48,12 +48,33 @@ router.post("/upload", (req, res, next) => {
         }
         next();
     });
-}, uploadDocument);
+}, (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+    }
 
-// Analyze route
-router.post("/analyze", upload.single("file"), analyzeDocument);
+    res.json({
+        message: "File uploaded successfully",
+        filePath: `/uploads/${req.file.filename}`
+    });
+});
+
+// Fix: Ensure frontend can analyze documents properly
+router.post("/analyze", upload.single("file"), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No file provided for analysis" });
+    }
+
+    try {
+        const analysisResult = await analyzeDocument(req, res);
+        res.json(analysisResult);
+    } catch (error) {
+        res.status(500).json({ error: "Analysis failed", details: error.message });
+    }
+});
 
 export default router;
+
 
 
 
