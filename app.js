@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
-import documentRoutes from "./routes.js"; // Ensure this file exists
+import documentRoutes from "./routes/routes.js"; // Ensure this file exists
 
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -1,4 +1,4 @@
-import { generateContent } from "./geminiService.js";
+import { generateContent } from "../services/geminiService.js";
 
 /**
  * @file docuController.js

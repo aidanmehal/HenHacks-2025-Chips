@@ -1,5 +1,5 @@
 import express from "express";
-import { uploadDocument, analyzeDocument } from "./docuController.js"; // Match the actual file name
+import { uploadDocument, analyzeDocument } from "../controllers/docuController.js"; // Match the actual file name
 
 const router = express.Router();
 
