@@ -4,7 +4,6 @@ import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
 import morgan from "morgan";
-<<<<<<< HEAD
 
 // Import the Sequelize instance and models here
 import sequelize from "./config/database.js";
@@ -13,10 +12,9 @@ import Document from "./models/Document.js";
 import DocumentFeedback from "./models/DocumentFeedback.js";
 
 import documentRoutes from "./routes/routes.js";
-=======
 import path from "path";
 import documentRoutes from "./routes/routes.js"; // Ensure this file exists
->>>>>>> 74c9fc5fbe8e923c5d9d0bab5e10c363ad11e633
+import userRoutes from "./routes/users.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -71,3 +69,5 @@ export default app;
 export default app;
 
 >>>>>>> 74c9fc5fbe8e923c5d9d0bab5e10c363ad11e633
+
+app.use("/api/users", userRoutes);
