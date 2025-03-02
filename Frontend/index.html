@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>LegalLens</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- This is the navbar that always shows up. Varies through mediaqueries. Not just Computer version of navbar -->
+            <ul class="computer_menu">
+
+                <li id="account_logo"><a href="Login.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="32px" fill="black">
+                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/>
+                    </svg>
+                </a></li>
+
+                <li><a id="logo" href="index.html">LegalLens</a></li>
+
+                <li id="burger" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+
+                <li class="hideOnMobile"><a href="#">About</a></li>
+                <li class="hideOnMobile"><a href="#">How To</a></li>
+                <li class="hideOnMobile"><a href="#">My Docs</a></li>
+            </ul>
+            <!-- This is the sidebar / phone_menu that is usually hidden unless the hamburger is clicked -->
+            <ul class="phone_menu">
+                <li id="X" onClick="closeSidebar()"><a><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" fill="black"/></svg></a></li>
+                
+                <li><a href="#">About</a></li>
+                <li><a href="#">How To</a></li>
+                <li><a href="#">My Docs</a></li>
+
+                <li><a href="Login.html" class="to_account">
+                    <span>Account</span>
+                    <span class="account_logo1">
+                        <svg height="25" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 10v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4H10c-2.21 0-4 1.79-4 4zm24 8c0 3.32-2.69 6-6 6s-6-2.68-6-6c0-3.31 2.69-6 6-6s6 2.69 6 6zM12 34c0-4 8-6.2 12-6.2S36 30 36 34v2H12v-2z"/>
+                            <path d="M0 0h48v48H0z" fill="none"/>
+                        </svg>
+                    </span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <footer>
+        <h3 id="socials_title">Socials</h3>
+        <div class="logo_container">
+            <ul>
+                <li><a href="https://www.youtube.com/@SDMNClothing">
+                    <svg id="YT" height="28px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x33_95-youtube"><g><path d="M476.387,144.888c-5.291-19.919-20.878-35.608-40.67-40.933C399.845,94.282,256,94.282,256,94.282    s-143.845,0-179.719,9.674c-19.791,5.325-35.378,21.013-40.668,40.933c-9.612,36.105-9.612,111.438-9.612,111.438    s0,75.334,9.612,111.438c5.29,19.92,20.877,34.955,40.668,40.281C112.155,417.719,256,417.719,256,417.719    s143.845,0,179.717-9.674c19.792-5.326,35.379-20.361,40.67-40.281c9.612-36.104,9.612-111.438,9.612-111.438    S485.999,180.994,476.387,144.888z" style="fill:#FF0000;"/><polygon points="208.954,324.723 208.954,187.93 329.18,256.328   " style="fill:#FFFFFF;"/></g></g><g id="Layer_1"/></svg>
+                </a></li>
+
+                <li><a href="https://www.facebook.com/SidemenClothing">
+                    <svg id="facebook" data-name="1-facebook"  height="22px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#385997;}.cls-2{fill:#fff;}</style></defs><title/><rect class="cls-1" height="64" rx="11.2" ry="11.2" width="64"/><path class="cls-2" d="M54.4,29.6h-10V22c0-1.86,2.14-2,2.8-2H54V9.6H47.2C39.67,9.6,34,14.93,34,22v7.6H25.6V40H34V64H44.4V40h8.4Z"/></svg>
+                </a></li>
+                
+                <li><a href="https://www.instagram.com/sidemenclothing/">
+                    <svg id="Insta" height="26px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style>.cls-1{fill:url(#Nepojmenovaný_přechod_27);}.cls-2{fill:#fff;}</style><linearGradient gradientUnits="userSpaceOnUse" id="Nepojmenovaný_přechod_27" x1="328.27" x2="183.73" y1="508.05" y2="3.95"><stop offset="0" stop-color="#ffdb73"/><stop offset="0.08" stop-color="#fdad4e"/><stop offset="0.15" stop-color="#fb832e"/><stop offset="0.19" stop-color="#fa7321"/><stop offset="0.23" stop-color="#f6692f"/><stop offset="0.37" stop-color="#e84a5a"/><stop offset="0.48" stop-color="#e03675"/><stop offset="0.55" stop-color="#dd2f7f"/><stop offset="0.68" stop-color="#b43d97"/><stop offset="0.97" stop-color="#4d60d4"/><stop offset="1" stop-color="#4264db"/></linearGradient></defs><title/><rect class="cls-1" height="465.06" rx="107.23" ry="107.23" width="465.06" x="23.47" y="23.47"/><path class="cls-2" d="M331,115.22a66.92,66.92,0,0,1,66.65,66.65V330.13A66.92,66.92,0,0,1,331,396.78H181a66.92,66.92,0,0,1-66.65-66.65V181.87A66.92,66.92,0,0,1,181,115.22H331m0-31H181c-53.71,0-97.66,44-97.66,97.66V330.13c0,53.71,44,97.66,97.66,97.66H331c53.71,0,97.66-44,97.66-97.66V181.87c0-53.71-43.95-97.66-97.66-97.66Z"/><path class="cls-2" d="M256,198.13A57.87,57.87,0,1,1,198.13,256,57.94,57.94,0,0,1,256,198.13m0-31A88.87,88.87,0,1,0,344.87,256,88.87,88.87,0,0,0,256,167.13Z"/><circle class="cls-2" cx="346.81" cy="163.23" r="21.07"/></svg>
+                </a></li>
+                
+                <li><a href="https://x.com/SidemenClothing?mx=2">
+                    <svg id="twitter" height="22px" xmlns="http://www.w3.org/2000/svg" height="1227" viewBox="0 0 1200 1227" fill="none"><g clip-path="url(#clip0_1_2)"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="black"/></g><defs><clipPath id="clip0_1_2"><rect width="1200" height="1227" fill="white"/></clipPath></defs></svg>
+                </a></li>
+
+                <li><a href="https://www.tiktok.com/@sidemenclothing">
+                    <svg id="tiktok" height="29px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-3{fill:#00f6ef;}.cls-4{fill:#ff004f;}</style></defs><path class="cls-3" d="M415.27,214.69V146.55c-89.08-3.75-91.89-84.69-92-92.3v-.57H254.49V319.06h0a54.5,54.5,0,1,1-38.64-52.18V196.59A123.49,123.49,0,1,0,323.43,319.06c0-1.73-.05-3.45-.12-5.16V183.22C355,212.22,415.27,214.69,415.27,214.69Z"/><path d="M435.54,231.47V163.33c-89.08-3.76-91.89-84.7-92-92.3v-.58H274.76V335.84h0a54.54,54.54,0,1,1-38.64-52.18V213.37A123.49,123.49,0,1,0,343.7,335.84c0-1.73-.05-3.45-.12-5.16V200C375.28,229,435.54,231.47,435.54,231.47Z"/><path class="cls-4" d="M325,70.45c3.32,18.07,13,46.34,41.28,62.87-21.6-25.15-22.7-57.61-22.74-62.29v-.58Z"/><path class="cls-4" d="M435.54,231.47V163.33a127.94,127.94,0,0,1-20.27-2.42v53.66s-60.26-2.47-92-31.46V313.78c.07,1.72.12,3.43.12,5.16a123.49,123.49,0,0,1-191.9,102.81A123.48,123.48,0,0,0,343.7,335.84c0-1.73-.05-3.45-.12-5.16V200C375.28,229,435.54,231.47,435.54,231.47Z"/><path class="cls-4" d="M215.85,266.76a54.56,54.56,0,0,0-39.63,101.31,54.54,54.54,0,0,1,59.9-84.41V213.37a124.69,124.69,0,0,0-15.91-1c-1.46,0-2.91,0-4.36.09Z"/></svg>
+                </a></li>
+
+                <li><a href="https://open.spotify.com/artist/2Thx0Avafp3zxOHBdFirqk?_authfailed=1">
+                    <svg id="spotify" height="24px" enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x34__stroke"><g id="Spotify_1_"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M64,0C28.8,0,0,28.8,0,64s28.8,64,64,64    s64-28.8,64-64S99.52,0,64,0 M93.44,92.48c-1.28,1.92-3.52,2.56-5.44,1.28c-15.04-9.28-33.92-11.2-56.32-6.08    c-2.24,0.64-4.16-0.96-4.8-2.88c-0.64-2.24,0.96-4.16,2.88-4.8c24.32-5.44,45.44-3.2,62.08,7.04C94.08,88,94.4,90.56,93.44,92.48     M101.12,74.88c-1.6,2.24-4.48,3.2-6.72,1.6c-17.28-10.56-43.52-13.76-63.68-7.36c-2.56,0.64-5.44-0.64-6.08-3.2    c-0.64-2.56,0.64-5.44,3.2-6.08c23.36-7.04,52.16-3.52,72,8.64C101.76,69.44,102.72,72.64,101.12,74.88 M101.76,56.96    C81.28,44.8,47.04,43.52,27.52,49.6c-3.2,0.96-6.4-0.96-7.36-3.84c-0.96-3.2,0.96-6.4,3.84-7.36c22.72-6.72,60.16-5.44,83.84,8.64    c2.88,1.6,3.84,5.44,2.24,8.32C108.48,57.6,104.64,58.56,101.76,56.96" fill="#10BC4C" fill-rule="evenodd" id="Spotify"/></g></g></svg>
+                </a></li>
+            </ul>
+        </div>
+        <hr style="width:100%; border: 1px solid rgb(205, 205, 205); margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+        <div class="text_container">
+            <div class="text_portion">
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Store</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Work With Us</a></li>
+                    <li><a href="#">Report a Fake</a></li>
+                </ul>
+            </div>
+            <div class="footer_account">
+                <div>
+                    <a href="Login.html" class="to_account">
+                        <h4>View Account</h4>
+                        <span class="account_logo1">
+                            <svg height="25" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 10v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4H10c-2.21 0-4 1.79-4 4zm24 8c0 3.32-2.69 6-6 6s-6-2.68-6-6c0-3.31 2.69-6 6-6s6 2.69 6 6zM12 34c0-4 8-6.2 12-6.2S36 30 36 34v2H12v-2z"/>
+                                <path d="M0 0h48v48H0z" fill="none"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer_download">
+                <h4>Download App</h4>
+                <ul>
+                    <li>
+                        <svg class="appstore" enable-background="new 0 0 56.693 56.693" height="56.693px" id="Layer_1" version="1.1" viewBox="0 0 56.693 56.693" width="36.693px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M41.777,30.517c-0.062-6.232,5.082-9.221,5.312-9.372c-2.891-4.227-7.395-4.807-8.998-4.873   c-3.83-0.389-7.477,2.256-9.42,2.256c-1.939,0-4.941-2.199-8.117-2.143c-4.178,0.062-8.029,2.43-10.179,6.17   c-4.339,7.527-1.11,18.682,3.118,24.791c2.067,2.986,4.532,6.346,7.766,6.223c3.117-0.123,4.293-2.016,8.061-2.016   s4.826,2.016,8.123,1.953c3.352-0.061,5.477-3.043,7.527-6.041c2.373-3.469,3.35-6.828,3.408-6.998   C48.305,40.433,41.844,37.958,41.777,30.517z"/><path d="M35.582,12.229c1.715-2.082,2.877-4.975,2.561-7.855c-2.475,0.1-5.471,1.645-7.248,3.725   c-1.592,1.846-2.984,4.785-2.611,7.613C31.045,15.926,33.861,14.307,35.582,12.229z"/></g></svg>
+                        <a href="https://apps.apple.com/us/app/sidemen-clothing/id6479241514">IOS</a>
+                    </li>
+                    <li>
+                        <svg class="appstore" height="56.6934px" id="Layer_1" style="enable-background:new 0 0 56.6934 56.6934;" version="1.1" viewBox="0 0 56.6934 56.6934" width="39.6934px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M39.332,18.0622L12.6744,3.7905C11.2891,3.0489,9.787,3.011,8.4869,3.485l22.7111,22.7111L39.332,18.0622z"/><path d="M49.2731,23.3844l-7.6787-4.1109l-8.6595,8.6594l8.6595,8.6595l7.6786-4.111   C52.9054,30.5368,52.9054,25.329,49.2731,23.3844z"/><path d="M6.4077,4.8794C5.5932,5.7746,5.0798,6.9697,5.0798,8.339v39.1878c0,1.3693,0.5134,2.5645,1.3278,3.4597l23.0536-23.0536   L6.4077,4.8794z"/><path d="M8.4869,52.3809c1.3,0.4739,2.8022,0.4362,4.1875-0.3055L39.332,37.8037l-8.1339-8.1339L8.4869,52.3809z"/></g></svg>
+                        <a href="https://play.google.com/store/apps/details?id=com.vennapps.sidemen&pli=1">ANDROID</a>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+    </footer>
+
+</body>
+</html>
