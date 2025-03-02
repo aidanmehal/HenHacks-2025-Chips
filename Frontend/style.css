@@ -176,9 +176,74 @@ img.scroll {
 
 
 
+/*////////////////////////////////// Form /////////////////////////////////////*/
 
+#drop-area {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
 
+#drop-area.highlight {
+    border-color: #0066ff;
+    background-color: #f0f8ff;
+}
 
+#file-input {
+    display: none;
+}
+
+#file-label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#status-message {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
+
+#file-upload-form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+#upload_button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(223, 140, 32);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#upload_button:hover {
+    background-color: rgb(232, 152, 48);
+    transform: scale(1.05);
+}
 
 
 /*////////////////////////////////// Footer Socials /////////////////////////////////////*/
@@ -283,6 +348,7 @@ footer {
 }
 
 
+/*////////////////////////////////// App In Future Page CSS  /////////////////////////////////////*/
 .appInFuture {
     padding: 200px;
     display: flex;
@@ -290,3 +356,5 @@ footer {
     align-items: center;
     text-align: center;
 }
+
+/*//////////////////////////////////  /////////////////////////////////////*/

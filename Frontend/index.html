@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="upload.js" defer></script>
     <title>LegalLens</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                 <div class="right">
                     <li id="burger" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
                 
-                    <li class="hideOnMobile"><a href="scroll.html">About</a></li>
+                    <li class="hideOnMobile"><a href="#">About</a></li>
                     <li class="hideOnMobile"><a href="#">How To</a></li>
                     <li id="last" class="hideOnMobile"><a href="#">My Docs</a></li>
                 </div>
@@ -47,6 +48,17 @@
         <div class="scroll_container">
             <img class="scroll" src="images/scroll.png" alt="scroll">
         </div>
+
+        <form id="file-upload-form">
+            <div id="drop-area">
+                <p>Drag & Drop your file here or <strong>click to upload</strong></p>  <!-- Strong tag just makes the text bold -->
+                <input type="file" id="file-input" name="file" accept=".pdf, .docx" required /> <!-- The input tag does the heavy lifting -->
+                <label id="file-label" for="file-input">No file selected</label>
+            </div>
+            <div id="upload_button" type="submit">Upload</div>
+            <p id="status-message"></p>
+        </form>
+
     </div>
 
 
