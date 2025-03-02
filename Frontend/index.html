@@ -12,17 +12,21 @@
         <nav>
             <!-- This is the navbar that always shows up. Varies through mediaqueries. Not just Computer version of navbar -->
             <ul class="computer_menu">
+                <div class="left">
+                    <li id="account_logo"><a href="Login.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="32px" fill="black">
+                            <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/>
+                        </svg>
+                    </a></li>
+                </div>
 
-                <li id="account_logo"><a href="Login.html">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="32px" fill="black">
-                        <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/>
-                    </svg>
-                </a></li>
+                <div class="center">
+                    <li><a id="logo" href="index.html">LegalLens</a></li>
+                </div>
 
-                <li><a id="logo" href="index.html">LegalLens</a></li>
-
-                <li id="burger" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
-
+                <div class="right">
+                    <li id="burger" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+                </div>
                 <!-- <ul class="nav_items"> -->
                     <li class="hideOnMobile"><a href="#">About</a></li>
                     <li class="hideOnMobile"><a href="#">How To</a></li>

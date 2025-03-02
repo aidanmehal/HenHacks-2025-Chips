@@ -21,7 +21,7 @@ header {
 }
 
 /* Default nav ul is for desktop version */
-nav ul {
+.computer_menu {
     width: 100%; /* Flexbox must span entire width of screen*/
     list-style: none;  /* Makes sure there's no bullet points or other list style */
     display: flex; /* All children of this element belong to it's flex-box*/
@@ -115,39 +115,46 @@ nav li #logo {
         padding-left: 10px;
         padding-right: 2%; /* To make it center in middle of screen because it would currently center between burger and search*/
     }
-
-
-
-
-    /*The most important thing here that allows the justify-content: space-between that was set above
-     to not get fucked up is that I have BOTH margin-left:auto and margin-right: auto. Having one of them 
-     messes things up because it overrides the justify content and tries to do whatever it takes to push the item 
-     all the way right or left. Here, space between allows evenly spaced gaps on left and right side of SDMN logo and
-      the margins for search and burger push their elements to either end. 
-      
-      flex-grow for logo just allows it to grow if it has space to. Not necessary for centering */
 }
 
+/*This is the desktop version*/
 @media (min-width: 750px) {
+    nav{
+        position: relative;
+    }
     nav ul {
         display: flex;
         justify-content: space-between;
     }
     #logo {
-        flex-grow: 1;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
     #account_logo {
         margin-right: auto;
     }
 }
 
-nav ul li:nth-last-child(3) a {
-    /* Your styles here */
-    color: red;
-    margin-left: auto;
+
+
+
+.left, .right {
+    display: flex; /* Ensure elements inside them are flex items */
+    align-items: center;
 }
 
+.center {
+    flex-grow: 1; /* Makes sure center div takes up extra space */
+    display: flex;
+    justify-content: center; /* Ensures the logo is centered */
+}
 
+/* #logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 45px;
+    text-align: center;
+} */
 
 
 
