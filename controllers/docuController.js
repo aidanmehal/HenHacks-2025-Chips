@@ -6,6 +6,8 @@ import { generateContent } from "../services/geminiService.js";
 
 let lastAnalysisResult = null; // In-memory store for the last analysis result
 
+const uploadDir = "uploads/";
+
 const uploadDocument = (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
@@ -25,6 +27,20 @@ const deleteFile = (filePath) => {
     });
 };
 
+const clearUploadsDirectory = () => {
+    fs.readdir(uploadDir, (err, files) => {
+        if (err) {
+            console.error("⚠️ Error reading uploads directory:", err);
+            return;
+        }
+        for (const file of files) {
+            fs.unlink(path.join(uploadDir, file), err => {
+                if (err) console.error("⚠️ Error deleting file:", err);
+            });
+        }
+    });
+};
+
 const safeParseJSON = (response) => {
     try {
         let text = typeof response === "object" && response.parts ? response.parts[0]?.text : response;
@@ -37,30 +53,35 @@ const safeParseJSON = (response) => {
 };
 
 const analyzeDocument = async (req, res) => {
+    let filePath = null;
     try {
         console.log("🔍 Analyzing document...");
         let documentText = "";
 
         if (req.file) {
-            const filePath = req.file.path;
+            filePath = req.file.path; // Get the file path from the uploads directory
+            console.log(`📄 File path: ${filePath}`);
             const fileExt = path.extname(filePath).toLowerCase();
 
             if (fileExt === ".pdf") {
                 const dataBuffer = fs.readFileSync(filePath);
                 const pdfData = await pdfParse(dataBuffer);
                 documentText = pdfData.text;
+                console.log("📄 PDF document text extracted");
             } else if (fileExt === ".docx") {
                 const dataBuffer = fs.readFileSync(filePath);
                 const result = await mammoth.extractRawText({ buffer: dataBuffer });
                 documentText = result.value;
+                console.log("📄 DOCX document text extracted");
             } else {
+                console.error("❌ Unsupported file format");
                 return res.status(400).json({ error: "Unsupported file format" });
             }
-
-            deleteFile(filePath);
         } else if (req.body.content) {
             documentText = req.body.content;
+            console.log("📄 Document content from request body");
         } else {
+            console.error("❌ No document content provided");
             return res.status(400).json({ error: "No document content provided" });
         }
 
@@ -92,6 +113,7 @@ For each classification:
   "reason": "Brief explanation of the rating"
 }`;
 
+        console.log("📝 Sending prompts to AI service...");
         const response = await generateContent(prompt);
         const ratingResponse = await generateContent(ratingPrompt);
 
@@ -102,6 +124,7 @@ For each classification:
         const parsedRatingResponse = safeParseJSON(ratingResponse);
 
         if (!parsedResponse || !parsedRatingResponse) {
+            console.error("❌ AI response is invalid");
             return res.status(500).json({
                 error: "AI response is invalid. Please try again.",
                 debug: {
@@ -117,10 +140,19 @@ For each classification:
             rating: parsedRatingResponse
         };
 
-        res.json(lastAnalysisResult);
+        console.log("✅ Analysis complete");
+        res.json(lastAnalysisResult); //output
     } catch (error) {
         console.error("❌ Error analyzing document:", error);
         res.status(500).json({ error: "Internal Server Error." });
+    } finally {
+        console.log("🧹 Cleaning up...");
+        // Ensure the file is deleted after processing
+        if (filePath) {
+            deleteFile(filePath);
+        }
+        // Clear the uploads directory
+        clearUploadsDirectory();
     }
 };
 

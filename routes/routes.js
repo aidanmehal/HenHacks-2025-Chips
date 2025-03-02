@@ -2,7 +2,7 @@ import express from "express";
 import multer from "multer";
 import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
-import { uploadDocument, analyzeDocument } from "../controllers/docuController.js";
+import { uploadDocument, analyzeDocument, getLastAnalysisResult } from "../controllers/docuController.js";
 import { registerUser } from "../controllers/userController.js";
 
 const router = express.Router();
