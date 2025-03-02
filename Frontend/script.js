@@ -8,6 +8,8 @@ function closeSidebar() {
     sidebar.style.display = 'none';
 }
 
+
+/*
 async function addData() {
     // 1) Prevent default form submission
     event.preventDefault();
@@ -56,4 +58,6 @@ async function addData() {
       return false;
     }
   }
+
+  */
   

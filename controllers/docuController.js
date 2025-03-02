@@ -149,7 +149,7 @@ ${documentText}`;
         };
 
         console.log("✅ Analysis complete");
-        res.json(lastAnalysisResult); //output
+        res.json(lastAnalysisResult); // final output !!!
     } catch (error) {
         console.error("❌ Error analyzing document:", error);
         res.status(500).json({ error: "Internal Server Error." });
@@ -165,6 +165,7 @@ ${documentText}`;
 };
 
 const getLastAnalysisResult = (req, res) => {
+    console.log("🔍 Retrieving last analysis result...");
     if (!lastAnalysisResult) {
         return res.status(404).json({ error: "No analysis result available" });
     }
