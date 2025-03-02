@@ -40,7 +40,7 @@ nav{
 }
 
 nav li {
-    height: 100px;   /* We set the height of the li's and that sets the height of the parent to the height of the li*/
+    height: 110px;   /* We set the height of the li's and that sets the height of the parent to the height of the li*/
 }
 nav a{
     height: 100%;
@@ -66,7 +66,7 @@ nav a:hover {
 }
 
 #last a {
-    padding-right: 15px;
+    padding-right: 40px;
 }
 
 /*The burger is not shown by default (desktop) but gets turned on by phone media query*/
@@ -150,6 +150,30 @@ nav a:hover {
         justify-content: center; /* Ensures the logo's space is centered. Logo not in flexbox */
     }
 }
+
+
+/*////////////////////////////////// Body /////////////////////////////////////*/
+
+
+
+/* Ensure the image fits within the screen size */
+.scroll_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the container takes the full height of the viewport */
+}
+
+img.scroll {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
 
 
 
