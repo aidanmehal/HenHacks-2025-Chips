@@ -2,11 +2,15 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("upload.js is loaded!");
+
     const dropArea = document.getElementById("drop-area");
     const fileInput = document.getElementById("file-input");
     const fileLabel = document.getElementById("file-label");
     const uploadForm = document.getElementById("file-upload-form");
     const statusMessage = document.getElementById("status-message");
+
+    console.log(dropArea, fileInput, fileLabel, uploadForm, statusMessage);
 
     // Prevent default behaviors for drag events such as the browser opening the file when the file is dropped
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
@@ -42,13 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // The argument to this is one of the files from one of the two files arrays above
     function handleFiles(file) {
-        if (["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(file.type)) { //Check that the file passed is a PDF or Word document (MIME type)
-            fileInput.files = new DataTransfer().files = [file]; //adds the file to a virtual-clipboard like container object. This gets assigned to the file input element's files property so it shows that a file got added cause that doesn't automatically happen unless the file is selected from clicking.
-            fileLabel.textContent = `Selected: ${file.name}`; //DOM manipulation to show the name of the file that was selected
+        if (["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(file.type)) {
+            const dataTransfer = new DataTransfer(); // Create a new DataTransfer object
+            dataTransfer.items.add(file); // Add the file to DataTransfer
+            fileInput.files = dataTransfer.files; // Assign the DataTransfer's FileList to fileInput.files
+    
+            fileLabel.textContent = `Selected: ${file.name}`; // Update the UI
         } else {
             alert("Only PDF and Word documents are allowed.");
         }
     }
+
 
     // Handle form submission asynchronously
     uploadForm.addEventListener("submit", async (e) => {
