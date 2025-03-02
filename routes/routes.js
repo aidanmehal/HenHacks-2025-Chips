@@ -57,6 +57,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
 // Ensure frontend can analyze documents properly
 router.post("/analyze", upload.single("file"), async (req, res) => {
+    console.log("Analyze endpoint hit!");
     if (!req.file) {
         return res.status(400).json({ error: "No file provided for analysis" });
     }

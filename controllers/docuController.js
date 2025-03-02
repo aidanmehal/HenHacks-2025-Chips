@@ -48,6 +48,7 @@ const safeParseJSON = (response) => {
  */
 const analyzeDocument = async (req, res) => {
     try {
+        console.log("🔍 Analyzing document...");
         let documentText = "";
 
         if (req.file) {
