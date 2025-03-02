@@ -62,9 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 uploadInitialText.innerHTML = '';
             } else {
                 console.error("uploadInitialText not found! Check the selector.");
-                console.log(document.querySelector("#drop-area p"));
+                console.log(document.querySelector("#drop-area p"));    //Removes old text
             }
-
         } else {
             alert("Only PDF and Word documents are allowed.");
         }
