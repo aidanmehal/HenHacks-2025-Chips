@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("file-input");
     const fileLabel = document.getElementById("file-label");
     const uploadForm = document.getElementById("file-upload-form");
-<<<<<<< HEAD
     const uploadInitialText = document.querySelector("#drop-area p"); 
-=======
-    const uploadButton = document.getElementById("upload_button");
->>>>>>> c032046766d2cf80beca6e427fd87f2150971791
     const statusMessage = document.getElementById("status-message");
 
     // Prevent default behaviors for drag events
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-<<<<<<< HEAD
     uploadForm.addEventListener("submit", (e) => {
         console.log("Submit event triggered!"); // Debugging
         e.preventDefault();
@@ -59,26 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("uploadInitialText not found! Check the selector.");
                 console.log(document.querySelector("#drop-area p"));    //Removes old text
             }
-=======
-    function handleFiles(file) {
-        if (["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(file.type)) {
-            fileLabel.textContent = `Selected: ${file.name}`;
->>>>>>> c032046766d2cf80beca6e427fd87f2150971791
         } else {
             alert("Only PDF and Word documents are allowed.");
         }
     }
 
-<<<<<<< HEAD
 /*
     // Handle form submission asynchronously
     uploadForm.addEventListener("submit", async (e) => {
         e.preventDefault(); // Prevent default form submission
 
-=======
-    // Handle file upload when clicking the upload button
-    uploadButton.addEventListener("click", async () => {
->>>>>>> c032046766d2cf80beca6e427fd87f2150971791
         if (fileInput.files.length === 0) {
             statusMessage.textContent = "Please select a file first!";
             statusMessage.className = "error";
@@ -197,7 +182,4 @@ uploadForm.addEventListener("submit", async (e) => {
 });
 
 
-<<<<<<< HEAD
 });
-=======
->>>>>>> c032046766d2cf80beca6e427fd87f2150971791
