@@ -84,17 +84,17 @@ nav a:hover {
 .phone_menu {
     position: fixed; /* We strictly determine it's position */
     top: 0;
-    left: 0; /* These two combined move it to the top left of the screen */
+    right: 0; /* These two combined move it to the top left of the screen */
     height: 100vh; /* Height is the whole view of the screen */
     width: 70%; /* I want the sidebar to cover 70% of the screen when opened*/
     z-index: 99; /* Make sure the phone_menu is above verything else*/
     background-color: white;
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 2); /* This is just fancy stuff that adds a little depth shadow to the border of the sidebar*/
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.4); /* This is just fancy stuff that adds a subtle depth shadow to the border of the sidebar */
 
     display: none; /* I put it as none initally so it hides but when you click on it, JS changes this to flex. When it opens and you hit the X it changes it back to none*/
     flex-direction: column; /* Vertical flexbox not horizontal. Stuff aligned on top of each other with respect to each other */
-    align-items: start; /* Vertically stick flex-box to the top*/
-    justify-content: start; /* Horizontally stick flex-box to the very left*/
+    align-items: end; /* Horizontally stick flex-box to the very left*/
+    justify-content: start; /* Vertically stick flex-box to the top*/ 
     padding-left: 15px;
 }
 .phone_menu li {
@@ -103,6 +103,7 @@ nav a:hover {
 
 .phone_menu a {
     width: 100%;
+    font-size: 25px;
     color: black;   /* Since background white we need elements to be black so visible*/
 }
 .phone_menu a:hover {
