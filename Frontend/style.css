@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
- 
 header {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.932);
@@ -27,6 +26,17 @@ header {
     display: flex; /* All children of this element belong to it's flex-box*/
     justify-content: space-between; 
     /* Putting align-items: center here won't do anything b/c no height was defined*/
+}
+
+nav{
+    position: relative;
+}
+#logo {
+    position: absolute; /* Makes sure the logo is absolute to the parent which is the whole nav so center of entire page */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: 45px;
 }
 
 nav li {
@@ -43,18 +53,27 @@ nav a{
 nav a:hover {
     color:rgb(223, 140, 32);
 }
+
 #account_logo {
-    margin-left: 2%;
+    padding-left: 15px;
+}
+#account_logo svg {
+    height: 80px; /* Ensure the SVG maintains its size */
+    width: 32px; /* Ensure the SVG maintains its size */
 }
 #account_logo path:hover {
     fill:rgb(223, 140, 32);
 }
 
-
-nav li #logo {
-    font-family: 'Great Vibes', cursive;
-    font-size: 45px;
+#last a {
+    padding-right: 15px;
 }
+
+/*The burger is not shown by default (desktop) but gets turned on by phone media query*/
+#burger {
+    display:none
+}
+
 .hideOnMobile {
     font-size: 20px;
 }
@@ -80,9 +99,6 @@ nav li #logo {
 }
 .phone_menu li {
     width: 100%;
-}
-#burger {
-    display:none
 }
 
 .phone_menu a {
@@ -119,42 +135,23 @@ nav li #logo {
 
 /*This is the desktop version*/
 @media (min-width: 750px) {
-    nav{
-        position: relative;
-    }
-    nav ul {
-        display: flex;
-        justify-content: space-between;
-    }
-    #logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
     #account_logo {
-        margin-right: auto;
+        margin-right: auto; /* Pushes the account logo to the right */
+    }
+
+    .left, .right {
+        display: flex; /* Ensure elements inside them are flex items */
+        align-items: center;
+    }
+
+    .center {
+        flex-grow: 1; /* Makes sure center div takes up extra space so other stuff gets pushed all the way to the ends*/ 
+        display: flex;
+        justify-content: center; /* Ensures the logo's space is centered. Logo not in flexbox */
     }
 }
 
 
-
-
-.left, .right {
-    display: flex; /* Ensure elements inside them are flex items */
-    align-items: center;
-}
-
-.center {
-    flex-grow: 1; /* Makes sure center div takes up extra space */
-    display: flex;
-    justify-content: center; /* Ensures the logo is centered */
-}
-
-/* #logo {
-    font-family: 'Great Vibes', cursive;
-    font-size: 45px;
-    text-align: center;
-} */
 
 
 
