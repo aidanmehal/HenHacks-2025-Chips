@@ -1,4 +1,4 @@
-import "dotenv/config"; // This loads .env variables correctly
+import "dotenv/config"; // Load environment variables
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -21,7 +21,7 @@ app.use("/api/documents", documentRoutes);
 
 // Global error handler
 app.use((err, _req, res, _next) => {
-    console.error("Error:", err.stack);
+    console.error("Error:", err?.stack || err);
     res.status(500).json({ error: "Internal Server Error" });
 });
 
@@ -32,4 +32,3 @@ app.listen(PORT, () => {
 
 // Export the Express app for testing
 export default app;
-
