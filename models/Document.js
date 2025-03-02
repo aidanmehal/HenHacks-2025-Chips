@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-// DocumentFeedback here so we can set up the 1:1 relation
-const DocumentFeedback = require("./DocumentFeedback");
+// DocumentFeedback here so we can set up the 1:1 relationship
+import DocumentFeedback from "./DocumentFeedback.js";
 
 const Document = sequelize.define("Document", {
   document_id: {
@@ -34,7 +34,7 @@ const Document = sequelize.define("Document", {
 // A document has one feedback (1:1)
 Document.hasOne(DocumentFeedback, {
   foreignKey: "document_id",
-  onDelete: "CASCADE", // If a Document is removed, also remove its Feedback
+  onDelete: "CASCADE", // if a Document is removed, also remove its Feedback
 });
 
 // Feedback belongs to a single document
@@ -42,4 +42,4 @@ DocumentFeedback.belongsTo(Document, {
   foreignKey: "document_id",
 });
 
-module.exports = Document;
+export default Document;

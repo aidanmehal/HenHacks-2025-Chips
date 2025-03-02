@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-//Document here to set up the relationship
-const Document = require("./Document");
+// Document here to set up the relationship
+import Document from "./Document.js";
 
 const User = sequelize.define("User", {
   user_id: {
@@ -24,7 +24,7 @@ const User = sequelize.define("User", {
     },
   },
   password: {
-    type: DataTypes.STRING, // for a demo, plain text is fine
+    type: DataTypes.STRING, // plain text for demo
     allowNull: false,
   },
   role: {
@@ -32,14 +32,14 @@ const User = sequelize.define("User", {
     defaultValue: "user",
   },
 }, {
-  tableName: "users",       // Ensures the SQL table name is exactly "users"
-  timestamps: true,         // Automatically adds createdAt and updatedAt fields
+  tableName: "users", // ensures the SQL table name is "users"
+  timestamps: true,   
 });
 
 // A user has many documents
 User.hasMany(Document, {
   foreignKey: "user_id",
-  onDelete: "CASCADE",  // If a User is deleted, also remove their Documents
+  onDelete: "CASCADE", // if a User is deleted, also remove their Documents
 });
 
 // Each document belongs to exactly one user
@@ -47,5 +47,6 @@ Document.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-module.exports = User;
+export default User;
+
 

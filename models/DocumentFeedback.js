@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
 const DocumentFeedback = sequelize.define("DocumentFeedback", {
   feedback_id: {
@@ -25,5 +25,6 @@ const DocumentFeedback = sequelize.define("DocumentFeedback", {
   timestamps: true,
 });
 
-module.exports = DocumentFeedback;
+export default DocumentFeedback;
+
 
