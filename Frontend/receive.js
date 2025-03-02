@@ -1,5 +1,3 @@
-// filepath: /Users/amirsamadian/Library/CloudStorage/OneDrive-King'sCollege/Coding Club/HenHacks 2025/HenHacks-2025-Chips/Frontend/receive.js
-
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         console.log("DOMContentLoaded event fired for receive.js");
@@ -23,7 +21,6 @@ function displayData(data) {
     const basic_list = document.querySelector(".basic_list");
     const important_list = document.querySelector(".important_list");
     const fill_list = document.querySelector(".fill_list");
-
 
     const basic = data.analysis.basic;
     console.log(basic);
@@ -60,6 +57,3 @@ function displayData(data) {
         }
     }
 }
-
-
-
