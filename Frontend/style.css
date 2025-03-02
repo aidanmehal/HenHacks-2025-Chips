@@ -163,18 +163,30 @@ nav a:hover {
     justify-content: center;
     align-items: start;
     z-index: 1;
-    width: auto; /* Adjust width to match the scroll image */
-    height: auto; /* Adjust height to match the scroll image */
-}
-
-img.scroll {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 60vh; /* Adjust width to match the scroll image */
+    height: 400px; /* Adjust height to match the scroll image */
     margin-left: auto;
     margin-right: auto;
 }
 
+img.scroll {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+@media (min-width: 750px) {
+    .scroll_container {
+        width: 80vh; /* Adjust width to match the scroll image */
+        height: auto; /* Adjust height to match the scroll image */
+    }
+}
+@media (max-width: 750px) {
+    .scroll_container {
+        width: 60vh; /* Adjust width to match the scroll image */
+        height: 50vh; /* Adjust height to match the scroll image */
+    }
+}
 
 /*////////////////////////////////// Form /////////////////////////////////////*/
 
