@@ -70,6 +70,8 @@ router.post("/analyze", upload.single("file"), async (req, res) => {
     }
 });
 
+router.get("/ai-data", getLastAnalysisResult);
+
 // User registration endpoint
 router.post("/register", registerUser);
 

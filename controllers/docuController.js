@@ -4,9 +4,8 @@ import pdfParse from "pdf-parse/lib/pdf-parse.js";
 import mammoth from "mammoth";
 import { generateContent } from "../services/geminiService.js";
 
-/**
- * Upload a legal document for processing
- */
+let lastAnalysisResult = null; // In-memory store for the last analysis result
+
 const uploadDocument = (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
@@ -20,18 +19,12 @@ const uploadDocument = (req, res) => {
     });
 };
 
-/**
- * Delete a file after processing
- */
 const deleteFile = (filePath) => {
     fs.unlink(filePath, (err) => {
         if (err) console.error("⚠️ Error deleting file:", err);
     });
 };
 
-/**
- * Parse AI response safely
- */
 const safeParseJSON = (response) => {
     try {
         let text = typeof response === "object" && response.parts ? response.parts[0]?.text : response;
@@ -43,9 +36,6 @@ const safeParseJSON = (response) => {
     }
 };
 
-/**
- * Analyze a document using Gemini AI
- */
 const analyzeDocument = async (req, res) => {
     try {
         console.log("🔍 Analyzing document...");
@@ -74,7 +64,6 @@ const analyzeDocument = async (req, res) => {
             return res.status(400).json({ error: "No document content provided" });
         }
 
-        // Prepare the prompt for Gemini AI
         const prompt = `You are an AI Legal Document Assistant. Your goal is to make complex legal documents readable without skipping important information. You do NOT summarize, but instead categorize sections for better understanding.
 
 Analyze the document **section by section** and classify each as:
@@ -109,7 +98,6 @@ For each classification:
         console.log("📥 AI Raw Response:", response);
         console.log("📥 AI Raw Rating Response:", ratingResponse);
 
-        // Parse AI response properly
         const parsedResponse = safeParseJSON(response);
         const parsedRatingResponse = safeParseJSON(ratingResponse);
 
@@ -123,16 +111,24 @@ For each classification:
             });
         }
 
-        res.json({
+        lastAnalysisResult = {
             message: "Analysis complete",
             analysis: parsedResponse,
             rating: parsedRatingResponse
-        });
+        };
+
+        res.json(lastAnalysisResult);
     } catch (error) {
         console.error("❌ Error analyzing document:", error);
         res.status(500).json({ error: "Internal Server Error." });
     }
 };
 
-export { uploadDocument, analyzeDocument };
+const getLastAnalysisResult = (req, res) => {
+    if (!lastAnalysisResult) {
+        return res.status(404).json({ error: "No analysis result available" });
+    }
+    res.json(lastAnalysisResult);
+};
 
+export { uploadDocument, analyzeDocument, getLastAnalysisResult };
