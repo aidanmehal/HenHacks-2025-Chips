@@ -85,6 +85,8 @@ const analyzeDocument = async (req, res) => {
             return res.status(400).json({ error: "No document content provided" });
         }
 
+        console.log("📄 Document text to be analyzed:", documentText);
+
         const prompt = `You are an AI Legal Document Assistant. Your goal is to make complex legal documents readable without skipping important information. You do NOT summarize, but instead categorize sections for better understanding.
 
 Analyze the document **section by section** and classify each as:
@@ -101,7 +103,10 @@ For each classification:
   "basic": { "Title 1": "Full content of basic section", ... },
   "important": { "Title 2": "Full content of important section", ... },
   "fill": { "Field requirement sentence": "Title of relevant section" }
-}`;
+}
+
+Document Text:
+${documentText}`;
 
         const ratingPrompt = `Rate the legal document based on how typical and safe it is. Provide a score from **1 to 10** where:
 - **10** = Standard, safe document
@@ -111,7 +116,10 @@ For each classification:
 {
   "rating": X, // Integer from 1-10
   "reason": "Brief explanation of the rating"
-}`;
+}
+
+Document Text:
+${documentText}`;
 
         console.log("📝 Sending prompts to AI service...");
         const response = await generateContent(prompt);
