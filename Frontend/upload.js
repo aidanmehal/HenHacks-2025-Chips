@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("file-input");
     const fileLabel = document.getElementById("file-label");
     const uploadForm = document.getElementById("file-upload-form");
+    const uploadInitialText = document.querySelector("#drop-area p"); 
     const statusMessage = document.getElementById("status-message");
 
     console.log(dropArea, fileInput, fileLabel, uploadForm, statusMessage);
@@ -44,6 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    uploadForm.addEventListener("submit", (e) => {
+        console.log("Submit event triggered!"); // Debugging
+        e.preventDefault();
+    });
+
     // The argument to this is one of the files from one of the two files arrays above
     function handleFiles(file) {
         if (["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"].includes(file.type)) {
@@ -52,12 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
             fileInput.files = dataTransfer.files; // Assign the DataTransfer's FileList to fileInput.files
     
             fileLabel.textContent = `Selected: ${file.name}`; // Update the UI
+            if (uploadInitialText) {
+                uploadInitialText.innerHTML = '';
+            } else {
+                console.error("uploadInitialText not found! Check the selector.");
+                console.log(document.querySelector("#drop-area p"));
+            }
+
         } else {
             alert("Only PDF and Word documents are allowed.");
         }
     }
 
-
+/*
     // Handle form submission asynchronously
     uploadForm.addEventListener("submit", async (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -97,7 +110,49 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+*/
+
+uploadForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    console.log("Upload button clicked!"); // Debugging
+
+    if (fileInput.files.length === 0) {
+        statusMessage.textContent = "Please select a file first!";
+        statusMessage.className = "error";
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+        statusMessage.textContent = "Uploading...";
+        statusMessage.className = "";
+
+        console.log("Sending file:", file.name); // Debugging
+
+        const response = await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        console.log("Response received:", response.status); // Debugging
+
+        const result = await response.json();
+
+        if (response.ok) {
+            statusMessage.textContent = "Upload successful!";
+            statusMessage.className = "success";
+        } else {
+            throw new Error(result.message || "Upload failed.");
+        }
+    } catch (error) {
+        statusMessage.textContent = error.message;
+        statusMessage.className = "error";
+        console.error("Upload error:", error);
+    }
+});
 
 
-
-
+});
