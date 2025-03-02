@@ -1,19 +1,20 @@
-const express = require("express");
+import express from "express";
+import { uploadDocument, analyzeDocument } from "./docuController.js"; // Match the actual file name
+
 const router = express.Router();
-const documentController = require("../controllers/documentController");
 
 /**
  * @route POST /api/documents/upload
  * @description Uploads a legal document for processing
  * @access Public
  */
-router.post("/upload", documentController.uploadDocument);
+router.post("/upload", uploadDocument);
 
 /**
  * @route POST /api/documents/analyze
  * @description Analyzes an uploaded legal document and categorizes its contents
  * @access Public
  */
-router.post("/analyze", documentController.analyzeDocument);
+router.post("/analyze", analyzeDocument);
 
-module.exports = router;
+export default router; // Use ES Module export
