@@ -383,63 +383,71 @@ footer {
     text-align: center;
 }
 
+/*///////////////////////////////// Response CSS /////////////////////////////////////
 
-/*/////////////////////////   Landing Page: Top Image   ///////////////////////////////////////////////*/
-
-.top_image_container {
-    position: relative; /* To control the layout */
-    width: 100%; /* Default: Full width */
-    height: auto; /* Adjust height to maintain aspect ratio */
+/* General styles for the response container */
+.response {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
-.top_image_container img {
-    width: 100%; 
-    height: auto;
-    display: block;
+/* Styles for the top list */
+.top_list {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.top_image_container button {
-    position: absolute; /* Position relative to the container */
-    bottom: 10%; /* Distance from the bottom of the image */
-    left: 49%; /* Horizontally center the button */
-    transform: translateX(-50%); /* Adjust centering */
-    padding: 10px 20px; 
-    background-color: #0000; 
-    color: #fff; 
-    border: none; /* Remove button's border */
-    border-radius: 20px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    text-decoration: underline;
+/* Styles for the list items */
+.top_list li {
+    margin-bottom: 20px;
 }
 
-.top_image_container button:hover {
-    background-color: #ffffff;
-    color: black;
-    text-decoration: none;
+/* Styles for the headings */
+.top_list h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
+/* Styles for the basic list */
+.basic_list {
+    padding-left: 20px;
+}
 
-@media (max-width: 940px) {
-    .top_image_container {
-        width: 100vw; /* Full viewport width */
-        height: 85vh; /* Cover 80% of the screen height */
-    }
-    .top_image_container img {
-        display: block;
-        object-fit: cover; /* Ensures the image covers the container proportionally */
-        width: 100%; /* Image fills the container */
-        height: 100%; /* Stretches while maintaining aspect ratio */
-    }
+.basic_list li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
 }
-@media (max-width: 660px) {
-    .top_image_container {
-        height: 70vh; /* Cover 80% of the screen height */
-    }
+
+/* Styles for the important list */
+.important_list {
+    padding-left: 20px;
 }
-@media (max-width: 590px) {
-    .top_image_container {
-        height: 60vh; /* Cover 80% of the screen height */
-    }
+
+.important_list li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+/* Styles for the fill list */
+.fill_list {
+    padding-left: 20px;
+}
+
+.fill_list li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    color: #5bc0de;
+    font-style: italic;
 }
 
 
