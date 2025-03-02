@@ -128,8 +128,7 @@ nav a:hover {
     /* Align hamburger on the left */
     #burger {
         display: flex; /* Ensure the burger is shown */
-        padding-left: 10px;
-        padding-right: 2%; /* To make it center in middle of screen because it would currently center between burger and search*/
+        padding-right: 15px;
     }
 }
 
