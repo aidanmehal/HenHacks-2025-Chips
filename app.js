@@ -14,7 +14,6 @@ import DocumentFeedback from "./models/DocumentFeedback.js";
 
 import documentRoutes from "./routes/routes.js";
 import path from "path";
-import documentRoutes from "./routes/routes.js"; // Ensure this file exists
 
 const app = express();
 const PORT = process.env.PORT || 3000;
