@@ -43,7 +43,9 @@ nav a{
 nav a:hover {
     color:rgb(223, 140, 32);
 }
-
+#account_logo {
+    margin-left: 2%;
+}
 #account_logo path:hover {
     fill:rgb(223, 140, 32);
 }
@@ -96,7 +98,7 @@ nav li #logo {
     cursor: pointer;
 }
 
-/* Less than 800 is mobile view */
+/* Less than 750 is mobile view */
 @media (max-width: 750px) {
     /* Hide elements that are not needed on mobile */
     .hideOnMobile {
@@ -110,15 +112,11 @@ nav li #logo {
     /* Align hamburger on the left */
     #burger {
         display: flex; /* Ensure the burger is shown */
-        margin-right: auto; /* Push the hamburger to the left */
         padding-left: 10px;
-        padding-right: 32px; /* To make it center in middle of screen because it would currently center between burger and search*/
+        padding-right: 2%; /* To make it center in middle of screen because it would currently center between burger and search*/
     }
 
-    /* Align search and cart to the right */
-    nav ul li:nth-last-child(1){    /*This pushes the search bar (2nd to last child) all the way to the right*/
-        margin-left: auto;
-     } 
+
 
 
     /*The most important thing here that allows the justify-content: space-between that was set above
@@ -136,12 +134,17 @@ nav li #logo {
         justify-content: space-between;
     }
     #logo {
-        padding-left: 20px;
-        padding-right: 50px;
+        flex-grow: 1;
     }
-    nav ul li:nth-last-child(2){    /*This pushes the search bar (2nd to last child) all the way to the right*/
-        margin-left: auto;
-     } 
+    #account_logo {
+        margin-right: auto;
+    }
+}
+
+nav ul li:nth-last-child(3) a {
+    /* Your styles here */
+    color: red;
+    margin-left: auto;
 }
 
 
