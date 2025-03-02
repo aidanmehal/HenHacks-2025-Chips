@@ -80,7 +80,7 @@ uploadForm.addEventListener("submit", async (e) => {
 
         console.log("Sending file:", file.name); // Debugging
 
-        const response = await fetch("/upload", {
+        const response = await fetch("/analyze", {
             method: "POST",
             body: formData
         });

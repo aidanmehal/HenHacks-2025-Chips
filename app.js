@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(process.cwd(), 'Frontend')));
 
+app.use("/", userRoutes);
 
 // Allow frontend to communicate with backend
 app.use(cors({ origin: "http://localhost:5500", credentials: true }));
