@@ -3,6 +3,7 @@ import multer from "multer";
 import fs from "fs";
 import { v4 as uuidv4 } from "uuid";
 import { uploadDocument, analyzeDocument } from "../controllers/docuController.js";
+import { registerUser } from "../controllers/userController.js";
 
 const router = express.Router();
 const uploadDir = "uploads/";
@@ -72,6 +73,9 @@ router.post("/analyze", upload.single("file"), async (req, res) => {
         res.status(500).json({ error: "Analysis failed", details: error.message });
     }
 });
+
+// POST /api/users/register
+router.post("/register", registerUser);
 
 export default router;
 

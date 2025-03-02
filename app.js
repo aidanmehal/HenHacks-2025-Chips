@@ -11,7 +11,7 @@ import sequelize from "./config/database.js";
 import User from "./models/User.js";
 import Document from "./models/Document.js";
 import DocumentFeedback from "./models/DocumentFeedback.js";
-
+import userRoutes from "./routes/routes.js";
 import documentRoutes from "./routes/routes.js";
 import path from "path";
 
@@ -58,6 +58,8 @@ app.use((err, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
+
+app.use("/api/users", userRoutes);
 
 // Export the Express app for testing
 export default app;
